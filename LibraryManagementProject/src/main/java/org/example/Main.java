@@ -152,7 +152,7 @@ public class Main {
                             + "\n\tName: " + name
                             + "\n\tAddress: " + address);
                     DB.save(new Person(username, password, name, address, category));
-                    login(category);
+                    login("Staff");
                     break;
                 }
 

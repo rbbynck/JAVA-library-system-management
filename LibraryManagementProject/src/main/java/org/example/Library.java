@@ -377,8 +377,12 @@ public class Library {
                         insert.execute();
                         book.setBookAvailability("Not Available");
                         database.save(book);
+                        sql = "SELECT seq from SQLITE_SEQUENCE WHERE name = 'HoldRequest'";
+                        SqlRow sqlRow = database.sqlQuery(sql).findOne();
+                        int holdRequestID = sqlRow.getInteger("seq");
                         transaction.commit();
                         System.out.println("\nHold Request Successful");
+                        System.out.println("Hold RequestID: " + holdRequestID + " [IMPORTANT]");
                         System.out.println("Book: [" + book.getBookTitle() + "] is now on hold. \nPlease go to the clerk to get the book." +
                                 "\nGet the book before [" + LocalDate.now().plusDays(2) + "] or it will become available for other students to borrow\n");
                     } catch (Exception e) {
